@@ -17,6 +17,9 @@ title: '网页性能优化总结'
 * HTTP--强缓存协商缓存,ETAG,HTTP2,多路复用，服务端推
 * 服务端-Gzip压缩，SSR
 * PWA--service worker
+* Google的PRPL
+* 骨架屏
+* V8代码编译缓存
 
 ----
 ##### Yahoo Performance Rules
