@@ -31,6 +31,21 @@ title: '搭建ReactJs开发环境实践'
 
 #### 二、如何让React读取本地JSON文件来Mock
 
+这一点在VueCli3创建的项目中也挺简单，但是在这个ReactJs项目中就不好配置了，看来尤大大更懂中国人。既然CRA脚手架没有提供webpack.config.js，也没有暴露任何其他的可配置的地方。那我们只能从头开始思考这个问题。
+
+如果eject出来是怎么做的呢？就是在本地运行的时候运行了一个webpack-dev-server，将json和静态文件都放到这个静态服务器上，然后通过http协议提供内容。好，现在既然不能eject也不能放到一个webpack-dev-server上，那我们何不把json另起一项服务呢？
+
+那这个稍微复杂的问题就拆解成两个非常容易解决的小问题了
+* 1.如何开启一个server来响应json文件.
+* 2.如何在开启json服务的时候同时启动默认服务。
+
+##### 下面就是解决方法：
+* 1.启动http-server来响应json文件请求，(一开始用python自带的SimpleHTTPServer，后来发现编程才能解决跨域问题，遂选用http-server)
+* 2.启动默认脚本来正常开启原来服务
+* 3.在同一条script命令里启动两个服务，并且相互不能影响。(一个```&```而不是两个)
+
+最终本地start命令如下：
+```http-server mock --cors & react-scripts start```
 
 
 #### 三、推荐的目录结构
