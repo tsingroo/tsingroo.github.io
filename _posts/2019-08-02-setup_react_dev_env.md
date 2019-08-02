@@ -25,7 +25,8 @@ title: '搭建ReactJs开发环境实践'
 如何新增这个staging环境：
 * 1.创建env文件```touch .env.staging```
 * 2.写入REACT_APP_NODE_ENV这个值```echo "REACT_APP_NODDE_ENV=staging" > .env.staging```
-* 3.现在程序里面取```process.env.REACT_APP_NODE_ENV```就是```staging```这个值了！
+* 3.向package.json添加一条记录```"staging":"node -r dotenv/config ./node_modules/.bin/react-scripts start dotenv_config_path=.env.staging"```
+* 4.现在程序里面取```process.env.REACT_APP_NODE_ENV```就是```staging```这个值了！
 
 
 #### 二、如何让React读取本地JSON文件来Mock
