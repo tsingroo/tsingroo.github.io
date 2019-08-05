@@ -48,7 +48,7 @@ title: '搭建ReactJs开发环境实践'
 ```http-server mock --cors & react-scripts start```
 
 
-#### 三、推荐的目录结构
+#### 三、推荐的目录结构-待完善
 ```
 mock/                       //mock数据json文件目录
 public/                     //index.html目录
