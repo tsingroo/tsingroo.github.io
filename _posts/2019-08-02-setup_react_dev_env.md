@@ -45,7 +45,9 @@ title: '搭建ReactJs开发环境实践'
 * 3.在同一条script命令里启动两个服务，并且相互不能影响。(一个```&```而不是两个)
 
 最终本地start命令如下：
-```http-server mock --cors & react-scripts start```
+```
+http-server mock --cors & react-scripts start
+```
 
 
 #### 三、推荐的目录结构-待完善
@@ -62,5 +64,30 @@ src/                        //源码目录
 package.json                //项目配置文件
 ```
 
-
 #### 四、Commit之前的代码检查
+
+
+涉及三个package:
+* husky使用pre-commit的一个钩子对代码提交前进行hook，这个hook里面做lint检查的操作。
+* 使用Lint-staged进行代码提交之前的增量检查。一个项目下，规范统一就好，不限定使用标准规范还是Airbnb规范。使用Airbnb规范需要添加Airbnb的eslint config，所以我们简化一下，以标准的来操作一下。
+* 使用prettier进行格式化和重写。
+
+下面是步骤：
+* 1.安装依赖```npm install --save-dev husky lint-staged prettier```
+* 2.向package.json添加husky配置
+```
+"husky": {
+   "hooks": {
+      "pre-commit": "lint-staged"
+   }
+}
+```
+* 3.向package.json添加lint-staged配置
+```
+"lint-staged": {
+   "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --single-quote --write",
+      "git add"
+   ]
+}
+```
