@@ -69,7 +69,7 @@ package.json                //项目配置文件
 
 同样不需要Eject配置，涉及三个package:
 * husky使用pre-commit的一个钩子对代码提交前进行hook，这个hook里面做lint检查的操作。
-* 使用Lint-staged进行代码提交之前的增量检查。一个项目下，规范统一就好，不限定使用标准规范还是Airbnb规范。使用Airbnb规范需要添加Airbnb的eslint config，所以我们简化一下，以标准的来操作一下。
+* 使用Lint-staged进行代码提交之前的增量检查。为避免全量lint使用lint-staged对于渐进式修改老代码也是一个比较好的实践。
 * 使用prettier进行格式化和重写。
 
 下面是步骤：
