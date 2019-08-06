@@ -49,6 +49,8 @@ title: '搭建ReactJs开发环境实践'
 http-server mock --cors & react-scripts start
 ```
 
+有一个问题就是http-server每run start一次就会重复开启一个新进程，这个稍后可以写个脚本来先kill掉再开启。
+
 
 #### 三、推荐的目录结构-待完善
 ```
