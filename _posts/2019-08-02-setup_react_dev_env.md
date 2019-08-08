@@ -12,6 +12,7 @@ title: '搭建ReactJs开发环境实践'
 * 二、在不eject官方CRA配置的前提下，让react项目读取本地json文件(不放在public目录下，放在public目录下会导致发布的dist增加很多不必要的文件)
 * 三、推荐的文件目录结构
 * 四、commit之前的代码检查
+* 五、React-RouterV4版本，如何在浏览器使用hash模式
 
 
 ##### 结论看起来简单，但是中间还是走了不少弯路的。目前这种方法不一定是最好的，但是绝对是考虑了一些场景后做的相对较优的。因为Eject出来配置后，后续CRA一更新可能产生更多问题，所以尽量不eject配置。
@@ -93,3 +94,20 @@ package.json                //项目配置文件
    ]
 }
 ```
+
+#### 五、React-RouterV4版本，如何在浏览器使用hash模式
+
+react router v4和以前的v2有很大不同，网上所谓的中文文档目前都还是v2的，并且都是介绍History模式的。react router v4以后对于router所在的环境进行了区分，如果我们要在浏览器使用，就要安装react-router-dom，而不是react-router这个库
+
+下面是使用步骤:
+* 1.安装依赖```npm install --save react-router-dom```
+* 2.在App.js引入HashRouter和Route```import { HashRouter, Route } from 'react-router-dom';```
+* 3.在App.js文件的rener方法写入下面代码
+```HTML
+<HashRouter>
+  <h3>This Is the layout HTML</h3>
+  <Route path="/about" component={About} />
+  <Route path="/aboutJdb" component={AboutJdb} />
+</HashRouter>
+```
+* 4.如果编程实现跳转,需要设置state然后render根据state值redirect到其他页面。具体参考这个：https://reacttraining.com/react-router/web/example/auth-workflow
